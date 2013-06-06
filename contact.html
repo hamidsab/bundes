@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The German Bundestag</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+      <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+      <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+
+      <link rel="stylesheet" href="style.css" />
+      <script src="bt.js"></script>
+    </meta>
+  </head>
+
+  <body>
+    <div data-role="header" data-position="fixed">
+      Contact information
+    </div>
+    <div id="content">
+     
+        <h5>deutsches nationaltheater und staatskapelle weimar - staatstheater Thueringen
+        Theaterplatz
+        99423 Weimar
+        </h5>
+      
+        <h4 id="contentHeading" >Postadresse</h4>
+        Deutsches Nationaltheater und Staatskapelle Weimar GmbH
+        Staatstheater Thueringen Postfach 2003 & 2005<br></br>
+        D-99401 Weimar
+		
+		<h4 id="contentHeading" >Opening Hours</h4>
+       
+		<span id="opHrs"> </span>
+		
+        <h4 id="contentHeading" >Talk to Us</h4>
+        Zentrale
+        Tel. 03643 - 755 0 <br />
+
+        Theaterkasse <br></br>
+        Tel. 03643  - 755 334<br></br>
+        Besucherservice<br></br>
+        Tel. 03643 - 755 334<br></br>
+        Fax 03643 - 755 321<br></br>
+		
+		<h4 id="contentHeading" >Email</h4>
+			service@nationaltheater-weimar.de
+      
+
+    </div>
+	<span id='motto'>' '</span>
+    <div data-role="footer" data-position="fixed" data-fullscreen ="true">
+      <div id="footer">
+        <fieldset class="ui-grid-c">
+          <div class="ui-block-a">
+            <button type="submit" data-theme="a"  id="BH" onclick ="BHnav()">Home</button>
+          </div>
+          <div class="ui-block-b">
+            <button type="submit" data-theme="b" onclick ="BMnav()">Map</button>
+          </div>
+          <div class="ui-block-c">
+            <button type="submit" data-theme="c" onclick ="BCnav()">Contact</button>
+          </div>
+          <div class="ui-block-d">
+            <button type="submit" data-theme="d" onclick ="BPnav()">Pics</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+	<script type="lang/javascript">
+							
+	$(document).ready(function() 
+	{	
+		function getInfo()
+		{
+			$.ajax({
+						type:'GET',
+						url:"http://www.blessedbytes.de/mobdev/touristdata.php?callback=?",
+						success:function(data) {
+						  $('#opHrs').html(data.OpeningHours);
+						  $('#motto').html(data.Details);
+						},
+						dataType:'jsonp'					
+				   });	 
+		}	
+        getInfo();
+		
+	
+		
+	});
+	</script>
+  </body>
+</html>
