@@ -1,10 +1,10 @@
 var myImage= new Array(); 
-myImage[0]="t1.jpg";       
-myImage[1]="t2.jpg";
-myImage[2]="t3.jpg";
-myImage[3]="t4.jpg"; 
-myImage[4]="t5.jpg";
-myImage[5]="t6.jpg"
+myImage[0]="1.jpg";       
+myImage[1]="2.jpg";
+myImage[2]="3.jpg";
+myImage[3]="4.jpg"; 
+myImage[4]="5.jpg";
+myImage[5]="6.jpg"
 var ImageCnt = 0;
 
 function next(){
