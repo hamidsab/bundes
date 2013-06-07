@@ -39,8 +39,8 @@ padding:1em;
     position:absolute;             /* position in the center of the screen */
 	left:30%;
     top:40%;
-  	height:400px;                   /* text area height */
-  	width:750px;                    /* text area width */
+  	height:350px;                   /* text area height */
+  	width:268px;                    /* text area width */
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
