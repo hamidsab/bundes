@@ -33,4 +33,20 @@ function next(){
   document.location.href ='picture.html';
   }
   
- 
+ $(document).ready(function(){
+	$.ajax({
+		url:'http://search.twitter.com/search.json?q=%23reichstag&rpp=15&include_entities=true&with_twitter_user_id=true&result_type=mixed',
+		type: 'GET',
+        dataType: 'jsonp',
+        success: function(data) {
+        	$.each(data.results, function(index, tweet) {
+				addTweet('<img src="'+ tweet.profile_image_url + '"/>' + tweet.text);
+			});
+		
+		}
+	});
+});
+
+function addTweet(tweet) {
+	$("#tweetlist").append("<li>" +  tweet + "</li>").listview('refresh');
+}

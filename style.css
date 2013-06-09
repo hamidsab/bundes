@@ -47,16 +47,16 @@ padding:1em;
                                    /* offset horizontal: half of text area width */
 }
 .map {
-    background:url(map.jpg) no-repeat center top; /* 170px x 200px */
+    /*background:url(map.jpg) no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
-	left:30%;
-    top:35%;
-  	height:400px;                   /* text area height */
-  	width:750px;                    /* text area width */
+	left:0%;
+    top:2%;
+  	                  /* text area height */
+  	width:100%;                    /* text area width */
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                
+       background-size: 90%;         
 }
 
 /* Landscape layout (with min-width) */
@@ -112,4 +112,59 @@ margin: 0 10px 10px 0;
 border: 1px solid #222;
 padding: 1px;
 height: 280px;
+}
+
+.navigation-bar .ui-btn .ui-btn-inner { 
+	padding-top: 40px !important;
+}
+
+.navigation-bar .ui-btn .ui-icon { 
+	width: 30px!important; 
+	height: 30px!important; 
+	margin-left: -15px !important; 
+	box-shadow: none!important; 
+	-moz-box-shadow: none!important; 
+	-webkit-box-shadow: none!important; 
+	-webkit-border-radius: 0 !important; 
+	border-radius: 0 !important; 
+}
+
+#nav_map .ui-icon { 
+	background-size: 34px 34px; 
+}
+
+#nav_map .ui-icon { 
+	background:  url(103-map.png) 50% 50% no-repeat; 
+}
+
+#nav_contact .ui-icon { 
+	background-size: 34px 34px; 
+}
+
+#nav_contact .ui-icon { 
+	background:  url(18-envelope.png) 50% 50% no-repeat; 
+}
+
+#nav_img .ui-icon { 
+	background-size: 34px 34px; 
+}
+
+#nav_img .ui-icon { 
+	background:  url(42-photos.png) 50% 50% no-repeat; 
+}
+
+#nav_abt .ui-icon { 
+	background-size: 34px 34px; 
+}
+
+#nav_abt .ui-icon { 
+	background:  url(137-presentation.png) 50% 50% no-repeat; 
+}
+
+#nav_home .ui-icon { 
+	background-size: 34px 34px; 
+}
+
+#nav_home .ui-icon { 
+	background:  url(53-house.png) 50% 50% no-repeat; 
 }
