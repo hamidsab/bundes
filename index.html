@@ -19,7 +19,19 @@
 	    <!-- PhoneGap -->
 		<script src="js/cordova-2.6.0.js" type="text/javascript"></script>
 		<script src="js/phonegap-helper.js" type="text/javascript"></script>
-		
+		<script type="text/javascript">
+		function getGotoResults(){
+			// alert("goto_results.php?from="+$("#selectHome").val()+"&to="+$("#selectDestination").val());
+			$.get( "http://panagiotis-iliopoulos.com/bus/goto_results.php?from="+$("#selectHome").val()+"&to="+$("#selectDestination").val(), function( data ) {
+				$( "#gotoResults" ).html( data );
+				});
+		}
+		function getNextResults(){
+			$.get( "http://panagiotis-iliopoulos.com/bus/next_results.php?from="+$("#selectNext").val(), function( data ) {
+				$( "#nextResults" ).html( data );
+				});
+		}
+		</script>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/app.css" />
 	</head>
@@ -36,10 +48,12 @@
 	        	<!-- Gear Icon for settings-->
   				<a href="#settings" class="ui-btn ui-corner-all ui-icon-gear ui-btn-right ui-btn-icon-notext ui-alt-icon ui-nodisc-icon"></a>
 	        </div>
+	        
 	        <div data-role="content">
 	    		<a href="#go_to" class="ui-btn" data-transition="slide" data-direction="reverse">Go to</a>
 	    		<a href="#next_bus" class="ui-btn" data-transition="slide">Next bus</a>
 	    	</div>
+	    	<div><img src = "1.jpg" alt = ""  align="middle" height="100%" width="100%"/></div>
 		</div>
 	
 		<!-- Go to -->
@@ -53,38 +67,38 @@
 	    	</div>
 	    
 	    	<div data-role="content">
-	    		<form >	    	
+	    		<form method="post" >	    	
 	    			<label>From</label>
 	    			
 	    			<select id="selectHome" onclick="onSelectHome()">
 	        		<option value></option>
-	        		<option value="gps" onclick="getCoords()">Current position</option>
-	        		<option value="apg">Am posecksen garten</option>
-	        		<option value="buw">Bauhaus Uni</option>
-	        		<option value="brk">Berkaerstr</option>
-	        		<option value="caa">Carl August allee</option>
-	        		<option value="ets">Ernst Thaelmann Strasse</option>
-	        		<option value="ern">Ernst Thaelmann Strasse/Meyerstr</option>
-	        		<option value="fkb">Falkenburg</option>
-	        		<option value="atr">Friedenstr/Atrium</option>
-	        		<option value="fri">Friedhof</option>
-	        		<option value="fes">Friedrich Ebert str</option>
-	        		<option value="gpl">Goetheplatz</option>
-	        		<option value="gps">Gropiusstr</option>
-	        		<option value="hbf">Hauptbahnhof</option>
-	        		<option value="hel">Hellerweg/EJBW</option> 	
-	        		<option value="hez">Helmholtzstr</option> 					
-  					<option value="kar">Karl Hausknect str</option>
-  					<option value="klk">Klinikum</option>
-  					<option value="mkl">Merketal</option>
-  					<option value="myr">Meyerstr</option>
-  					<option value="rai">Rainer-Maria-Rilke-Str</option>
-  					<option value="ros">Rosenweg</option>
-  					<option value="rbs">Rudolf Breitscheid str</option>
-  					<option value="sch">Schoppenhauerstr</option>
-  					<option value="wpl">Wielandplatz</option>
-  					<option value="wdg">Wilder Graben</option>
-  					<option value="zhg">Zum Hospital Graben</option>  						
+	        		<!--option value="gps" onclick="getCoords()">Current position</option-->
+	        		<option value="Am Posechsen Garten">Am posecksen garten</option>
+	        		<option value="Bauhaus Universitat">Bauhaus Uni</option>
+	        		<option value="Berkaer Str">Berkaerstr</option>
+	        		<option value="Carl August allee">Carl August allee</option>
+	        		<option value="Ernst Thaelmannstr.">Ernst Thaelmann Strasse</option>
+	        		<option value="Ernst Thaelmann strasse/Meyerstr">Ernst Thaelmann Strasse/Meyerstr</option>
+	        		<option value="Falkenburg">Falkenburg</option>
+	        		<option value="Friedenstrasse/Atrium">Friedenstr/Atrium</option>
+	        		<option value="Friedhof">Friedhof</option>
+	        		<option value="Friedrich-Ebert-Str.">Friedrich Ebert str</option>
+	        		<option value="Goetheplatz">Goetheplatz</option>
+	        		<option value="Gropiustr.">Gropiusstr</option>
+	        		<option value="Hauptbahnhof">Hauptbahnhof</option>
+	        		<option value="Hellerweg">Hellerweg/EJBW</option> 	
+	        		<option value="Helmholtzstr">Helmholtzstr</option> 					
+  					<option value="Karl Hausknesctstr.">Karl Hausknectstr</option>
+  					<option value="Klinikum">Klinikum</option>
+  					<option value="Merketal">Merketal</option>
+  					<option value="Meyerstrasse">Meyerstr</option>
+  					<option value="Rainer-Maria-Rilke-Str">Rainer Maria Rilke Str</option>
+  					<option value="Rosenweg">Rosenweg</option>
+  					<option value="Rudolf-Breitscheid-Str">Rudolf Breitscheid str</option>
+  					<option value="Schopenhauerstr.">Schoppenhauerstr</option>
+  					<option value="Wielandplatz">Wielandplatz</option>
+  					<option value="Wilder Graben">Wilder Graben</option>
+  					<option value="Zum Hospital Graben">Zum Hospital Graben</option>  						
 				</select>				
 	    		</form>
 	    		<a href="#" ></a>
@@ -109,40 +123,41 @@
 	    	<div data-role="content">
 	    		<form id="dest_form">	    	
 	    			<label>To</label>
-	    			<select id="selectHome" onclick="onSelectHome()">
+	    			<select id="selectDestination" onclick="onSelectHome()">
 	        		<option value></option>
-	        		<option value="apg">Am posecksen garten</option>
-	        		<option value="buw">Bauhaus Uni</option>
-	        		<option value="brk">Berkaerstr</option>
-	        		<option value="caa">Carl August allee</option>
-	        		<option value="ets">Ernst Thaelmann Strasse</option>
-	        		<option value="ern">Ernst Thaelmann Strasse/Meyerstr</option>
-	        		<option value="fkb">Falkenburg</option>
-	        		<option value="atr">Friedenstr/Atrium</option>
-	        		<option value="fri">Friedhof</option>
-	        		<option value="fes">Friedrich Ebert str</option>
-	        		<option value="gpl">Goetheplatz</option>
-	        		<option value="gps">Gropiusstr</option>
-	        		<option value="hbf">Hauptbahnhof</option>
-	        		<option value="hel">Hellerweg/EJBW</option> 	
-	        		<option value="hez">Helmholtzstr</option> 					
-  					<option value="kar">Karl Hausknect str</option>
-  					<option value="klk">Klinikum</option>
-  					<option value="mkl">Merketal</option>
-  					<option value="myr">Meyerstr</option>
-  					<option value="rai">Rainer-Maria-Rilke-Str</option>
-  					<option value="ros">Rosenweg</option>
-  					<option value="rbs">Rudolf Breitscheid str</option>
-  					<option value="sch">Schoppenhauerstr</option>
-  					<option value="wpl">Wielandplatz</option>
-  					<option value="wdg">Wilder Graben</option>
-  					<option value="zhg">Zum Hospital Graben</option>
+	        		
+	        		<option value="Am Posechsen Garten">Am posecksen garten</option>
+	        		<option value="Bauhaus Universitat">Bauhaus Uni</option>
+	        		<option value="Berkaer Str">Berkaerstr</option>
+	        		<option value="Carl August allee">Carl August allee</option>
+	        		<option value="Ernst Thaelmannstr.">Ernst Thaelmann Strasse</option>
+	        		<option value="Ernst Thaelmann strasse/Meyerstr">Ernst Thaelmann Strasse/Meyerstr</option>
+	        		<option value="Falkenburg">Falkenburg</option>
+	        		<option value="Friedenstrasse/Atrium">Friedenstr/Atrium</option>
+	        		<option value="Friedhof">Friedhof</option>
+	        		<option value="Friedrich-Ebert-Str.">Friedrich Ebert str</option>
+	        		<option value="Goetheplatz">Goetheplatz</option>
+	        		<option value="Gropiustr.">Gropiusstr</option>
+	        		<option value="Hauptbahnhof">Hauptbahnhof</option>
+	        		<option value="Hellerweg">Hellerweg/EJBW</option> 	
+	        		<option value="Helmholtzstr">Helmholtzstr</option> 					
+  					<option value="Karl Hausknesctstr.">Karl Hausknectstr</option>
+  					<option value="Klinikum">Klinikum</option>
+  					<option value="Merketal">Merketal</option>
+  					<option value="Meyerstrasse">Meyerstr</option>
+  					<option value="Rainer-Maria-Rilke-Str">Rainer Maria Rilke Str</option>
+  					<option value="Rosenweg">Rosenweg</option>
+  					<option value="Rudolf-Breitscheid-Str">Rudolf Breitscheid str</option>
+  					<option value="Schopenhauerstr.">Schoppenhauerstr</option>
+  					<option value="Wielandplatz">Wielandplatz</option>
+  					<option value="Wilder Graben">Wilder Graben</option>
+  					<option value="Zum Hospital Graben">Zum Hospital Graben</option>
   						
 				</select>
 	    		</form>
 	    		<div id="bottomButtons" data-role="controlgroup" data-type="horizontal" align="center">
 		    		<a href="#go_to" id="dest_back" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide" data-direction="reverse"></a>
-		    		<a href="#go_to_results" id="dest_next" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide"></a>	    	
+		    		<a href="#go_to_results" id="dest_next" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide"  onclick="getGotoResults();"></a>	    	
 	    		</div>
 	    	</div>
 		</div>
@@ -159,27 +174,8 @@
 	    
 		    <div data-role="content" align="center">
 		    	
-		    	<div class="ui-grid-a">
-<?php
-$con=mysqli_connect("localhost","root","","busdb");
+		    	<div class="ui-grid-a" id="gotoResults">
 
-
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-  
-  $result = mysqli_query($con,"SELECT BUS_TIME, Route, Direction FROM Routes WHERE STOP_NAME='Klinikum' AND BUS_TIME>'11:30' ORDER BY BUS_TIME ASC LIMIT 5");
-while($row = mysqli_fetch_array($result))
- {
-  echo $row['BUS_TIME'];echo "  ";
-  echo $row['Route'];echo "  ";
-  echo $row['Direction'];echo "<br>";
-
-  }
-
-mysqli_close($con);
-?>
 				  
 				  <!--div class="ui-block-a">Bus 1</div>
 				  <div class="ui-block-b">9:30</div>
@@ -221,7 +217,7 @@ mysqli_close($con);
 	    			<label>
 	    				Bus stop	    		
 	    			</label>
-	    			<select id="selectHome" onclick="onSelectHome()">
+	    			<select id="selectNext" onclick="onSelectHome()">
 	        		<option value></option>
 	        		<option value="apg">Am posecksen garten</option>
 	        		<option value="buw">Bauhaus Uni</option>
@@ -232,8 +228,8 @@ mysqli_close($con);
 	        		<option value="fkb">Falkenburg</option>
 	        		<option value="atr">Friedenstr/Atrium</option>
 	        		<option value="fri">Friedhof</option>
-	        		<option value="fes">Friedrich Ebert str</option>
-	        		<option value="gpl">Goetheplatz</option>
+	        		<option value="Friedrich-Ebert-Str">Friedrich Ebert str</option>
+	        		<option value="Goetheplatz">Goetheplatz</option>
 	        		<option value="gps">Gropiusstr</option>
 	        		<option value="hbf">Hauptbahnhof</option>
 	        		<option value="hel">Hellerweg/EJBW</option> 	
@@ -254,7 +250,7 @@ mysqli_close($con);
 	    		</form>
 	    		<div id="bottomButtons" data-role="controlgroup" data-type="horizontal" align="center">
 		    		<a href="#startup" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide" data-direction="reverse"></a>
-		    		<a href="#next_bus_results" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide"></a>
+		    		<a href="#next_bus_results" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide" onclick="getNextResults();"></a>
 	    		</div>
 	    	</div>
 		</div>
@@ -271,8 +267,8 @@ mysqli_close($con);
 	    
 		    <div data-role="content" align="center">
 		    	
-		    	<div class="ui-grid-b">
-				  <div class="ui-block-a">Bus 1</div>
+		    	<div class="ui-grid-b" id="nextResults">
+				  <!-- <div class="ui-block-a">Bus 1</div>
 				  <div class="ui-block-b">10:26</div>
 				  <div class="ui-block-c ui-btn ui-responsive ui-icon-arrow-u ui-nodisc-icon ui-btn-icon-notext"></div>
 				  <div class="ui-block-a">Bus 3:</div>
@@ -283,7 +279,7 @@ mysqli_close($con);
 				  <div class="ui-block-c ui-btn ui-responsive ui-icon-arrow-d ui-nodisc-icon ui-btn-icon-notext"></div>
 				  <div class="ui-block-a">Bus 7:</div>
 				  <div class="ui-block-b">11:57</div>
-				  <div class="ui-block-c ui-btn ui-responsive ui-icon-arrow-u ui-nodisc-icon ui-btn-icon-notext"></div>
+				  <div class="ui-block-c ui-btn ui-responsive ui-icon-arrow-u ui-nodisc-icon ui-btn-icon-notext"></div> -->
 				</div>
 		    	
 			    	<!--table data-role="table" id="next_bus_results_table" class="ui-responsive ui-shadow"  data-mode="">
@@ -312,7 +308,7 @@ mysqli_close($con);
 	        </div>
 	        <div data-role="content">
 	        	<label>Home bus stop</label>
-	        	<select id="selectHome" onclick="onSelectHome()">
+	        	<select id="selectNext" onclick="onSelectHome()">
 	        		<option value></option>
 	        		<option value="apg">Am posecksen garten</option>
 	        		<option value="buw">Bauhaus Uni</option>
@@ -323,7 +319,7 @@ mysqli_close($con);
 	        		<option value="fkb">Falkenburg</option>
 	        		<option value="atr">Friedenstr/Atrium</option>
 	        		<option value="fri">Friedhof</option>
-	        		<option value="fes">Friedrich Ebert str</option>
+	        		<option value="Friedrich">Friedrich Ebert str</option>
 	        		<option value="gpl">Goetheplatz</option>
 	        		<option value="gps">Gropiusstr</option>
 	        		<option value="hbf">Hauptbahnhof</option>
