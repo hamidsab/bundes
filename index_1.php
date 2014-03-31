@@ -1,3 +1,9 @@
+<?php 
+if isset($_REQUEST["selectHome"]){
+$selectHome =$_REQUEST["selectHome"];
+echo $selectHome;
+}
+?>
 <!DOCTYPE html>
 
 <html>
@@ -53,7 +59,7 @@
 	    	</div>
 	    
 	    	<div data-role="content">
-	    		<form >	    	
+	    		<form action="./index_1.php" method="post" >	    	
 	    			<label>From</label>
 	    			
 	    			<select id="selectHome" onclick="onSelectHome()">
@@ -91,7 +97,7 @@
 				<span class="ui-btn ui-btn-inline ui-corner-all ui-icon-location ui-btn-icon-notext" onclick="getCoords()"></span>
 	    		<div id="bottomButtons" data-role="controlgroup" data-type="horizontal" align="center">
 	    			<a href="#startup" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide" data-direction="reverse"></a>
-	    			<a href="#destination" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide"></a>	    	
+	    			<a href="#destination" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-notext ui-alt-icon ui-nodisc-icon" data-transition="slide" onclick="$(this).submit();"></a>	    	
 	    		</div>
 	    	</div>
 		</div>
